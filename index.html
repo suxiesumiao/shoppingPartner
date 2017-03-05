@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> 买菜小助手 </title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <link rel="Shortcut Icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <div id="app">
+        <div class="component food">
+            <div title="菜谱" class="animated bounceInDown container"></div>
+            <ul>
+                <li
+                v-bind:class="{ clicked: item.isClicked }"
+                class="animated bounceInDown"
+                v-on:click="getMixture(item,index)"
+                v-for="(item,index,value) in food">
+                    <!--此处的name是菜谱中每一道菜的name-->
+                    <span>{{ item.name }}</span>
+                    <span>💰{{ item.price }}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="component mixture">
+            <div title="食材" class="animated bounceInDown container"></div>
+            <ul>
+                <!--putInTrolley将点击的每一道食材加到购物车之中-->
+                <li
+                class="animated bounceInDown"
+                v-on:click="putInTrolley(item)"
+                v-for="(item,index,value) in mixture">
+                    <!--此处的name是菜谱中每一道菜的所需的食材的name-->
+                    <span>{{ item.name }}</span>
+                    <span>💰{{ item.singlePrice }}</span>
+                </li>
+                </li>
+            </ul>
+        </div>
+        <div class="component money">
+            <div title="购物车" class="animated bounceInDown container"></div>
+            <!--foodList指的是在购物车之中的食材列表-->
+            <ul class="foodList">
+                <li
+                v-bind:class="{ canceled: item.isCanceled }"
+                class="animated bounceInLeft"
+                v-on:click="cancel(item,index)"
+                v-for="( item,index,value) in shoppingTrolley">
+                    <span>{{ item.name }}</span>
+                    <span>💰{{ item.price }}</span>
+                </li>
+            </ul>
+            <div class="calculate animated bounceInUp">
+                <span>💰💰💰</span>
+                <span>{{ result }}</span>
+            </div>
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/axios/0.15.3/axios.min.js"></script>
+    <script src="http://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="http://cdn.bootcss.com/vue/2.2.1/vue.min.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
