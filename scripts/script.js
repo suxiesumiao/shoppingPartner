@@ -1,3 +1,4 @@
+let timer
 let app = new Vue({
     el: '#app',
     data: {
@@ -43,7 +44,7 @@ let app = new Vue({
                         tempEl.innerText = `${item.name}已经添加过了哟😳在这里再找找看`
                         tempEl.classList.add('addTooMuch')
                         let timer = null
-                        if (timer) { clearTimeout(timer) }
+                        clearTimeout(timer)
                         timer = setTimeout(function () {
                             tempEl.innerText = ''
                             tempEl.classList.remove('addTooMuch')
