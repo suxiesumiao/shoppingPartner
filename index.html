@@ -17,10 +17,9 @@
     <div id="app">
         <div class="component food">
             <div title="菜谱" class="animated bounceInDown container"></div>
-            <ul>
+            <ul class="animated bounceInDown">
                 <li
                 v-bind:class="{ clicked: item.isClicked }"
-                class="animated bounceInDown"
                 v-on:click="getMixture(item,index)"
                 v-for="(item,index,value) in food">
                     <!--此处的name是菜谱中每一道菜的name-->
